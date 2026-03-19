@@ -2,7 +2,7 @@
 # 環境構築
 
 ## Dockerビルド
-* git clone [後ほどリポジトリのURLを書く]
+* git clone [https://github.com/hana20210115/mogitate.laravel.git]
 * docker-compose up -d --build
 
 ## Laravel環境構築
