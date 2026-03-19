@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Season;
 
 class ProductController extends Controller
 {
       public function index(Request $request)
     {
         $query = Product::with('seasons');
-
+        
         $search = $request->search;
         if ($search) {
             $query->where('name', 'like', "%{$search}%");}
@@ -30,7 +31,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::with('seasons')->findOrFail($id);
-        $seasons = \App\Models\Season::all();
+        $seasons =Season::all();
         return view('show', compact('product','seasons'));
     }
 

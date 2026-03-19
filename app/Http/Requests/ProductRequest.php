@@ -22,7 +22,7 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required|mimes:png,jpeg',
+            'image' => 'nullable|image|mimes:png,jpeg',
             'name' =>'required',
             'price'=>'required|numeric|between:0,10000',
             'seasons'=>'required|array',
@@ -33,7 +33,7 @@ class ProductRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'image.required' => '商品画像を登録してください',
+            'image.image' => '画像ファイルを選択してください',
             'image.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
             'name.required' => '商品名を入力してください',
             'price.required' => '値段を入力して下さい',

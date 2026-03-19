@@ -2,12 +2,19 @@
 # 環境構築
 
 ## Dockerビルド
-* git clone [https://github.com/hana20210115/mogitate.laravel.git]
-* docker-compose up -d --build
+* git clone https://github.com/hana20210115/mogitate.laravel.git
+cd mogitate.laravel
+* cp .env.example .env
+docker run --rm \
+      -u "$(id -u):$(id -g)" \
+      -v "$(pwd):/var/www/html" \
+      -w /var/www/html \
+      laravelsail/php83-composer:latest \
+      composer install --ignore-platform-reqs
+* ./vendor/bin/sail up -d --build
 
 ## Laravel環境構築
 * ./vendor/bin/sail artisan key:generate
-* cp .env.example .env
 * ./vendor/bin/sail artisan storage:link
 * ./vendor/bin/sail artisan migrate
 * ./vendor/bin/sail artisan db:seed
